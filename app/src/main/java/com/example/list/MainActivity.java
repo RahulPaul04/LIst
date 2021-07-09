@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
             // Restore value of members from saved state
             ArrayList<String> list =new ArrayList<String>();
             list = savedInstanceState.getStringArrayList(lis);
+            scrollid= savedInstanceState.getInt(sid);
 
             for(String s:list){
                 if(!s.isEmpty()) {
@@ -90,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<String> total =new ArrayList<String>();
     int quantity;
-    int buid;
+    int editid;
+    int scrollid;
     public void additem(View view){
         RelativeLayout relativeLayout =  findViewById(R.id.relative);
         LinearLayout linear = new LinearLayout(this);
@@ -106,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
         linear.setLayoutParams(new ScrollView.LayoutParams(ScrollView.LayoutParams.MATCH_PARENT,ScrollView.LayoutParams.WRAP_CONTENT));
         int r =10;
         int b =20;
-        scroll.setId(r);
+        scroll.setId(ViewCompat.generateViewId());
+        scrollid = scroll.getId();
 
         but.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         but.setText("ADD");
@@ -135,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         int r =10;
         int b = 20;
         LinearLayout linearLayout = findViewById(R.id.linear);
-        ScrollView name = relativeLayout.findViewById(r);
+        ScrollView name = relativeLayout.findViewById(scrollid);
         
         EditText edit = name.findViewById(b);
         String item = edit.getText().toString();
@@ -211,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static final String lis = "total";
+    static final String sid  = "sid";
 
 
 
@@ -221,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // Save the user's current game state
         savedInstanceState.putStringArrayList(lis,total);
+        savedInstanceState.putInt(sid,scrollid);
 
 
         // Always call the superclass so it can save the view hierarchy state
