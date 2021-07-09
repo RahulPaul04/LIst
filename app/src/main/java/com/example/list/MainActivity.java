@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<String> total =new ArrayList<String>();
     int quantity;
+    int buid;
     public void additem(View view){
         RelativeLayout relativeLayout =  findViewById(R.id.relative);
         LinearLayout linear = new LinearLayout(this);
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         but.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         but.setText("ADD");
-        but.setId(b);
+
 
 
         but.setOnClickListener(this::addlist);
